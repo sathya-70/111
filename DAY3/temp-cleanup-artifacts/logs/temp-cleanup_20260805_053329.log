@@ -1,0 +1,10 @@
+[2026-08-05 05:33:29] [INFO] Script started on host c261-19-1 by user labuser
+[2026-08-05 05:33:29] [INFO] Cleanup mode started. DryRun=False; OlderThanDays=0; Cutoff=8/5/2026 5:33:29 AM
+[2026-08-05 05:33:29] [INFO] Scanning path: C:\Users\labuser\AppData\Local\Temp\2
+[2026-08-05 05:33:29] [WARN] Skipping locked/in-use file: C:\Users\labuser\AppData\Local\Temp\2\01184816-a939-4ca5-be5e-990b1ab8fed0.tmp
+[2026-08-05 05:33:29] [WARN] Skipping locked/in-use file: C:\Users\labuser\AppData\Local\Temp\2\1f1e062f-82d1-4ba7-9179-3cb14f1913a8.tmp
+[2026-08-05 05:33:29] [WARN] Skipping locked/in-use file: C:\Users\labuser\AppData\Local\Temp\2\86a8f180-cca2-4a71-bbe7-2861b6675d8e.tmp
+[2026-08-05 05:33:29] [INFO] Scanning path: C:\Windows\Temp
+[2026-08-05 05:33:29] [ERROR] Failed to enumerate path: C:\Windows\Temp. Error: Access to the path 'C:\Windows\Temp' is denied.
+[2026-08-05 05:33:29] [INFO] Cleanup mode completed.
+[2026-08-05 05:33:29] [INFO] Script finished successfully.

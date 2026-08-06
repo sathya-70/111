@@ -1,0 +1,8 @@
+[2026-08-05 06:31:53] [INFO] Directory already exists: C:\Users\labuser\Documents\training\day3\event-log-artifacts
+[2026-08-05 06:31:53] [INFO] Directory already exists: C:\Users\labuser\Documents\training\day3\event-log-artifacts\logs
+[2026-08-05 06:31:53] [INFO] Directory already exists: C:\Users\labuser\Documents\training\day3\event-log-artifacts\archives
+[2026-08-05 06:31:53] [INFO] Directory already exists: C:\Users\labuser\Documents\training\day3\event-log-artifacts\manifests
+[2026-08-05 06:31:53] [INFO] Directory already exists: C:\Users\labuser\Documents\training\day3\event-log-artifacts\rollback-output
+[2026-08-05 06:31:53] [INFO] Script started on host 'c261-19-1' by user 'labuser'.
+[2026-08-05 06:31:53] [INFO] Parameters: OlderThanDays=3; DryRun=False; Rollback=False; Pattern=*; RunId=20260805_063153
+[2026-08-05 06:31:53] [ERROR] Fatal error: Cleanup execution failed. Error: Failed during target discovery. Error: Failed to enumerate event logs. Error: Could not retrieve information about the Security log. Error: Attempted to perform an unauthorized operation..

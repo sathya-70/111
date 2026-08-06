@@ -1,0 +1,11 @@
+[2026-08-05 06:25:38] [INFO] Directory already exists: C:\Users\labuser\Documents\Training\DAY3\event-log-artifacts
+[2026-08-05 06:25:38] [INFO] Directory already exists: C:\Users\labuser\Documents\Training\DAY3\event-log-artifacts\logs
+[2026-08-05 06:25:38] [INFO] Directory already exists: C:\Users\labuser\Documents\Training\DAY3\event-log-artifacts\archives
+[2026-08-05 06:25:38] [INFO] Directory already exists: C:\Users\labuser\Documents\Training\DAY3\event-log-artifacts\manifests
+[2026-08-05 06:25:38] [INFO] Directory already exists: C:\Users\labuser\Documents\Training\DAY3\event-log-artifacts\rollback-output
+[2026-08-05 06:25:38] [INFO] Script started on host 'c261-19-1' by user 'labuser'.
+[2026-08-05 06:25:38] [INFO] Parameters: OlderThanDays=3; DryRun=True; Rollback=False; Pattern=Application; RunId=20260805_062538
+[2026-08-05 06:25:39] [INFO] Discovered 1 enabled logs with records using pattern 'Application'.
+[2026-08-05 06:25:39] [INFO] Log excluded by age rule: Application; NewestEvent=8/5/2026 6:25:17 AM
+[2026-08-05 06:25:39] [INFO] Cleanup mode start. DryRun=True; CutoffDate=8/2/2026 6:25:39 AM; TargetLogs=0; RecordsToDelete=0
+[2026-08-05 06:25:39] [INFO] Script finished successfully.

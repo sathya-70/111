@@ -1,0 +1,4 @@
+[2026-08-05 05:26:12] [INFO] Script started on host c261-19-1 by user labuser
+[2026-08-05 05:26:12] [INFO] Rollback mode started using manifest: C:\Users\labuser\Documents\Training\DAY3\temp-cleanup-artifacts\manifests\manifest_20260805_052439.jsonl
+[2026-08-05 05:26:12] [INFO] Rollback mode completed.
+[2026-08-05 05:26:12] [INFO] Script finished successfully.

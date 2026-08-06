@@ -1,0 +1,7 @@
+[2026-08-05 06:22:06] [INFO] Created directory: C:\Users\labuser\Documents\Training\DAY3\event-log-artifacts\logs
+[2026-08-05 06:22:06] [INFO] Created directory: C:\Users\labuser\Documents\Training\DAY3\event-log-artifacts\archives
+[2026-08-05 06:22:07] [INFO] Created directory: C:\Users\labuser\Documents\Training\DAY3\event-log-artifacts\manifests
+[2026-08-05 06:22:07] [INFO] Created directory: C:\Users\labuser\Documents\Training\DAY3\event-log-artifacts\rollback-output
+[2026-08-05 06:22:07] [INFO] Script started on host 'c261-19-1' by user 'labuser'.
+[2026-08-05 06:22:07] [INFO] Parameters: OlderThanDays=3; DryRun=True; Rollback=False; Pattern=Application; RunId=20260805_062206
+[2026-08-05 06:22:07] [ERROR] Fatal error: Cleanup execution failed. Error: Failed during target discovery. Error: Failed to enumerate event logs. Error: The property 'Count' cannot be found on this object. Verify that the property exists.
