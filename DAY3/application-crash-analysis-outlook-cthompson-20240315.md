@@ -1,4 +1,4 @@
-# Application Crash Analysis — OUTLOOK.EXE (cthompson)
+# Root Cause Analysis — OUTLOOK.EXE Crash (cthompson)
 
 **Date:** 2024-03-15  
 **Analyst:** DWP Desktop/Endpoint Engineer  
@@ -32,6 +32,14 @@
 | Framework | v4.0.30319 |
 | Process ID | 0x1f4c |
 | Report ID | a3c2f1d4-89bb-4e21-91d7-f2c3a1b09e44 |
+| Faulting application path | C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE |
+| Faulting module path | C:\Windows\System32\KERNELBASE.dll |
+
+---
+
+## Root Cause Statement
+
+The Outlook crash is caused by a deterministic access violation (`0xc0000005`) during startup in a repeatable execution path (`KERNELBASE.dll` offset `0x000000000003a4b2`). Based on timing and repeatability, the most probable technical trigger is a corrupted Outlook runtime state (profile/OST and/or startup add-in path) that is loaded automatically within ~38 seconds of launch, resulting in `System.AccessViolationException` and process termination.
 
 ---
 
@@ -68,6 +76,13 @@ The account lockout for cthompson was confirmed at 08:44:56 (Event 4740). The Ou
 - Outlook launching and attempting to reconnect to Exchange/M365 using a potentially stale or corrupt cached credential/profile state.
 - An OST file that may have been left in an inconsistent state when the session was interrupted during lockout.
 
+### 6. Why This Is Root Cause and Not Symptom
+
+- Two Event ID 1000 crashes share the same application version, module version, exception code, and fault offset.
+- Event ID 1026 confirms an unhandled `System.AccessViolationException`, aligning with low-level memory access failure.
+- Event ID 1001 confirms APPCRASH telemetry for the same sequence.
+- The reproducible timing after launch indicates a startup component path, not random user action.
+
 ---
 
 ## Probable Root Causes (Ranked)
@@ -85,6 +100,10 @@ The account lockout for cthompson was confirmed at 08:44:56 (Event 4740). The Ou
 ### 3. MAPI/Exchange Provider Credential State Issue
 - Following a lockout and credential reset, MAPI providers may hold stale token/credential handles.
 - Attempting to use an invalidated handle can trigger an access violation in KERNELBASE.dll.
+
+Confidence level:
+- High confidence in deterministic startup crash pattern.
+- Medium confidence that profile/OST corruption is the primary trigger until Safe Mode and profile rebuild tests are completed.
 
 ---
 
@@ -130,6 +149,15 @@ The account lockout for cthompson was confirmed at 08:44:56 (Event 4740). The Ou
 | Clear Credential Manager entries | Desktop Engineer | Same day |
 | Verify Outlook patch level and update if required | Desktop Engineer | Same day |
 | Confirm no recurrence after fix and close incident | Desktop Engineer | Within 1 hour of fix |
+
+---
+
+## Closure Criteria
+
+- Outlook opens normally in standard mode.
+- No further Event ID 1000 (`Application Error`) for `OUTLOOK.EXE` for at least one business day.
+- No further Event ID 1026 (`.NET Runtime`) for `OUTLOOK.EXE` on the same endpoint.
+- User confirms normal send/receive, calendar open, and mailbox sync.
 
 ---
 
