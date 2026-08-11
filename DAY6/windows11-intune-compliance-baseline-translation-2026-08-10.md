@@ -98,6 +98,8 @@ Click **Next**.
 21. Allow up to 24 hours for devices to check in and report status.
 22. Review **Per-setting status** to identify any settings producing high noncompliant counts before enforcing Conditional Access.
 
+See the full post-assignment validation procedure in the section **Post-Assignment Validation** below.
+
 ---
 
 ## Latest Likely UI Path (and Path Volatility Flags)
@@ -132,3 +134,87 @@ To improve reliability and reduce policy noise while preserving security intent:
 - Set Antivirus = Require and Antispyware = Require (if aligned to your AV strategy).
 - Configure Compliance policy setting Mark devices with no compliance policy assigned as = Not compliant.
 - Keep Compliance status validity period aligned to your operations model (commonly 30 days unless a stricter posture is needed).
+
+---
+
+## Post-Assignment Validation
+
+### Where to find a specific device's compliance status for this policy
+
+**Path 1 — Via the policy (best for bulk view):**
+1. Intune admin center > **Devices** > **Compliance**.
+2. Select the **Policies** tab > click `DWP-WIN11-Compliance-Baseline`.
+3. The **Monitor** tab opens by default showing the device status bar chart.
+4. Click **View report** to see per-device rows with: Device name, Logged-in user, Policy compliance status, Last contacted.
+5. Search for the test device name using the Search box.
+
+**Path 2 — Via the device directly (best for single-device triage):**
+1. Intune admin center > **Devices** > **All devices**.
+2. Search for and select the test device.
+3. Go to **Monitor** > **Compliance** (left-hand menu within the device blade).
+4. All compliance policies assigned to this device are listed with their individual status.
+5. Click the policy name to expand and see which specific settings are compliant or noncompliant.
+
+**Per-setting drill-down:**
+- From the policy Monitor tab, select the **Per-setting status** tile.
+- Each setting in the policy is listed with a count for Compliant / Noncompliant / Error / Not applicable.
+- Select the noncompliant count number to see exactly which devices failed that specific setting.
+
+---
+
+### What each compliance state means for Conditional Access
+
+| Status | What it means | Conditional Access impact |
+|---|---|---|
+| **Compliant** | Device has met every setting in this policy at last check-in. | Access to CA-protected resources (M365, Exchange, SharePoint, Teams) is **permitted** (subject to other CA conditions). |
+| **Not compliant** | One or more settings failed. Grace period has expired or was never set. | CA **blocks** access to protected resources. User sees an access-denied page with a prompt to fix the device. |
+| **In grace period** | One or more settings failed, but the configured grace period (7 days) has not yet expired. | CA **permits** access during the grace window. Device is flagged for remediation but the user is not blocked yet. |
+
+Key operational points:
+- **In grace period** is not the same as compliant — the clock is running. If the device does not remediate within 7 days it automatically moves to Not compliant and CA blocks access with no further warning unless a noncompliance email action was configured.
+- A device can be **Compliant to this policy** but **Not compliant overall** if another assigned policy is failing. CA evaluates the combined device compliance state, not individual policy results.
+- Compliance state visible in Intune reflects the **last check-in**. A device that fixed itself but has not yet checked in will still show the old state until the next sync (up to 8 hours on Windows; trigger manually via Company Portal > Sync or `dsregcmd /refreshprt`).
+
+---
+
+### BitLocker shows Non-compliant despite BitLocker being enabled — three most common causes
+
+#### Cause 1 — HAS attestation has not refreshed since last boot
+
+**Why it happens:** `Require BitLocker` uses the Windows Health Attestation Service, which records TPM boot measurements. If BitLocker was enabled, re-keyed, or the device upgraded since the last clean boot, HAS may still hold the previous state.
+
+**Fastest check:**
+```powershell
+# Run on the device — confirms current BitLocker status and TPM readiness
+Get-BitLockerVolume -MountPoint C: | Select-Object MountPoint, VolumeStatus, ProtectionStatus, EncryptionMethod
+```
+If `ProtectionStatus` = `On` and `VolumeStatus` = `FullyEncrypted` but Intune still shows noncompliant, **reboot the device**, wait 15 minutes, then trigger a manual sync. HAS re-attests on the next clean boot.
+
+---
+
+#### Cause 2 — BitLocker protection is suspended (not disabled)
+
+**Why it happens:** Windows automatically suspends BitLocker during major updates, driver changes, or BIOS/firmware updates. `ProtectionStatus` reports `Off` (suspended) even though encryption data is still on disk. Intune/HAS sees suspension as non-protected.
+
+**Fastest check:**
+```powershell
+# ProtectionStatus = Off with VolumeStatus = FullyEncrypted = suspended, not disabled
+Get-BitLockerVolume -MountPoint C: | Select-Object VolumeStatus, ProtectionStatus
+
+# Re-enable protection immediately (no data loss, no re-encryption needed)
+Resume-BitLocker -MountPoint C:
+```
+After `Resume-BitLocker`, reboot and sync. HAS will attest correctly on the next boot.
+
+---
+
+#### Cause 3 — TPM is not owned, not ready, or reported in an error state
+
+**Why it happens:** HAS requires a functional TPM to seal the BitLocker keys. If the TPM is in a reduced-functionality state (common after motherboard replacement, firmware update, or factory reset without TPM clear), HAS cannot attest to BitLocker even if encryption is on.
+
+**Fastest check:**
+```powershell
+# Check TPM status on the device
+Get-Tpm | Select-Object TpmPresent, TpmReady, TpmEnabled, TpmActivated, TpmOwned, ManufacturerVersion
+```
+If `TpmReady = False` or `TpmEnabled = False`: escalate to hardware/firmware review. If `TpmOwned = False`: Windows should auto-provision TPM ownership on next boot — reboot and recheck. If TPM version is 1.2, Secure Boot HAS attestation may be unsupported for this device model.
