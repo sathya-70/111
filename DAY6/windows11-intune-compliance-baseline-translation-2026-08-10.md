@@ -28,6 +28,78 @@ Operational note:
 - This grace period is policy-level action timing, not a per-setting value field.
 - Devices can show In grace period before moving to Not compliant.
 
+## Steps to Create the Compliance Policy in Intune
+
+### Step 1 — Sign in and navigate
+
+1. Open [Microsoft Intune admin center](https://intune.microsoft.com).
+2. Go to **Devices** > **Compliance**.
+3. Select the **Policies** tab.
+4. Click **+ Create policy**.
+
+### Step 2 — Platform and basics
+
+5. Platform: select **Windows 10 and later**.
+6. Click **Create**.
+7. **Name**: e.g. `DWP-WIN11-Compliance-Baseline`
+8. **Description**: e.g. `DWP security baseline compliance policy for Windows 11 endpoints.`
+9. Click **Next**.
+
+### Step 3 — Configure compliance settings (map to baseline requirements)
+
+Work through each settings category and apply the values from the table above:
+
+**Device health** (Requirements 1 and 2)
+- Require BitLocker → **Require**
+- Require Secure Boot to be enabled on the device → **Require**
+- Require code integrity → **Require** *(compensating control for Req 7)*
+
+**Device properties** (Requirement 3)
+- Minimum OS version → **10.0.22621.2861**
+
+**System security > Defender** (Requirement 4)
+- Real-time protection → **Require**
+- Microsoft Defender Antimalware → **Require**
+- Microsoft Defender Antimalware security intelligence up-to-date → **Require**
+
+**System security > Device security** (Requirement 5)
+- Firewall → **Require**
+
+**System security > Password** (Requirement 6)
+- Require a password to unlock mobile devices → **Require**
+
+**Microsoft Defender for Endpoint** (Compensating control for Requirement 7)
+- Require the device to be at or under the machine risk score → **Low**
+
+Click **Next**.
+
+### Step 4 — Actions for noncompliance (Grace Period — all settings)
+
+10. The default action **Mark device noncompliant** is pre-populated with Schedule = **0 days** (immediate).
+11. Change the **Schedule (days after noncompliance)** field to **7**.
+12. Optionally add a second action — **Send email to end user** — to notify users before enforcement kicks in.
+13. Click **Next**.
+
+### Step 5 — Assignments
+
+14. Under **Included groups**, click **+ Add groups**.
+15. Select the target device or user group (e.g. `GRP-DWP-ManagedEndpoints`).
+16. Exclude any pilot exclusion or break-glass groups if applicable.
+17. Click **Next**.
+
+### Step 6 — Review and create
+
+18. Review the summary. Confirm all 7 requirements are reflected.
+19. Click **Create**.
+
+### Step 7 — Validate after deployment
+
+20. Go to **Devices** > **Compliance** > select the policy > **Monitor** tab.
+21. Allow up to 24 hours for devices to check in and report status.
+22. Review **Per-setting status** to identify any settings producing high noncompliant counts before enforcing Conditional Access.
+
+---
+
 ## Latest Likely UI Path (and Path Volatility Flags)
 
 Intune UI labels can shift between portal experiences. The settings names above are stable, but navigation may vary.
