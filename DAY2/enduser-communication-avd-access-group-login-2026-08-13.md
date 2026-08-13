@@ -1,0 +1,1 @@
+Hi — we found why you couldn’t connect today, and it’s now fixed. Your account wasn’t in the correct access group, so we added it and confirmed your login is working. Your files and access are safe. Please sign in again now; if anything still doesn’t work, reply to this ticket and we’ll help right away.

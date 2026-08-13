@@ -117,6 +117,14 @@ Representative quotes:
 
 ---
 
+
+
+
+
+
+
+
+
 ## Top 3 Priorities — Act Today
 
 Ranking method: Blocker severity gates the top positions before volume is applied. A single Blocker outranks any volume of Minor/Friction comments. Within the same severity tier, volume and business impact break the tie.
