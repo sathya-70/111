@@ -1,0 +1,5 @@
+﻿"Step","Owner","Action","Status"
+"1","Endpoint Lead","Compare impacted devices against this host baseline and identify shared policy/app timing markers.","Pending"
+"2","Identity Engineer","Map 4625 failures by time to conditional access decisions and MFA outcomes.","Pending"
+"3","Intune Engineer","Correlate DM and GroupPolicy events with sign-in windows for delays/conflicts.","Pending"
+"4","Service Desk Coordinator","Use startup-items and profile event indicators to prioritize manual remediation order.","Pending"

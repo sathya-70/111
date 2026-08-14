@@ -1,0 +1,15 @@
+﻿{
+    "Incident":  "Incident A - Possible Unauthorized Client Matter Exposure",
+    "Version":  "Corrected",
+    "DryRun":  true,
+    "ScriptMode":  "ReadOnlyEvidenceCollection",
+    "StartedFrom":  "2026-08-11T05:27:51.7104458+00:00",
+    "Hostname":  "c261-19-1",
+    "Username":  "labuser",
+    "OutputDirectory":  "C:\\Users\\labuser\\Documents\\Training\\Project\\evidence-artifacts\\incident-A_run_20260814_052751",
+    "Counts":  {
+                   "SecuritySignInEvents":  0,
+                   "GroupAuditEvents":  0,
+                   "AADOperationalEvents":  7
+               }
+}

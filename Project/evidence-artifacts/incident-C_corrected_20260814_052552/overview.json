@@ -1,0 +1,20 @@
+﻿{
+    "Incident":  "Incident C - Missing Desktop Shortcuts",
+    "Version":  "Corrected",
+    "DryRun":  true,
+    "StartedFrom":  "2026-08-13T05:25:51.2827505+00:00",
+    "Hostname":  "c261-19-1",
+    "Username":  "labuser",
+    "UserDesktop":  "C:\\Users\\labuser\\Desktop",
+    "PublicDesktop":  "C:\\Users\\Public\\Desktop",
+    "OutputDirectory":  "C:\\Users\\labuser\\Documents\\Training\\Project\\evidence-artifacts\\incident-C_corrected_20260814_052552",
+    "Counts":  {
+                   "UserShortcuts":  1,
+                   "PublicShortcuts":  3,
+                   "MissingExpected":  2,
+                   "UserProfileEvents":  156,
+                   "MSIEvents":  0,
+                   "PowerShellLnkEvents":  0,
+                   "TempProfileIndicators":  0
+               }
+}

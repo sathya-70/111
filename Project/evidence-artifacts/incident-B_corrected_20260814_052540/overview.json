@@ -1,0 +1,24 @@
+﻿{
+    "Incident":  "Incident B - Login Failures and Severe Slowness",
+    "Version":  "Corrected",
+    "DryRun":  true,
+    "StartedFrom":  "2026-08-13T05:25:40.2434108+00:00",
+    "Hostname":  "c261-19-1",
+    "Username":  "labuser",
+    "LastBootUpTime":  "2026-08-14T03:23:15.4239820+00:00",
+    "MinutesSinceBoot":  122.42,
+    "Disk":  {
+                 "Drive":  "C:",
+                 "FreeSpaceGB":  12.69,
+                 "TotalSpaceGB":  29.45,
+                 "PercentUsed":  56.9
+             },
+    "OutputDirectory":  "C:\\Users\\labuser\\Documents\\Training\\Project\\evidence-artifacts\\incident-B_corrected_20260814_052540",
+    "Counts":  {
+                   "SignInEvents":  0,
+                   "UserProfileEvents":  156,
+                   "DeviceManagementEvents":  0,
+                   "GroupPolicyEvents":  0,
+                   "StartupItems":  3
+               }
+}

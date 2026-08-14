@@ -1,0 +1,10 @@
+﻿{
+    "Incident":  "B",
+    "Version":  "AI",
+    "DryRun":  true,
+    "StartTime":  "\/Date(1786598740243)\/",
+    "LastBoot":  "\/Date(1786677795423)\/",
+    "FreeSpaceGB":  12.69,
+    "TotalSpaceGB":  29.45,
+    "OutputDirectory":  "C:\\Users\\labuser\\Documents\\Training\\Project\\evidence-artifacts\\incident-B_ai_20260814_052540"
+}

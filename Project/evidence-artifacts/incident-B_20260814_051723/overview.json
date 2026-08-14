@@ -1,0 +1,34 @@
+﻿{
+    "Incident":  "Incident B - Login Failures and Severe Slowness",
+    "DryRun":  true,
+    "ScriptMode":  "ReadOnlyEvidenceCollection",
+    "StartedFrom":  "2026-08-13T05:17:23.7508258+00:00",
+    "Hostname":  "c261-19-1",
+    "Username":  "labuser",
+    "LastBootUpTime":  "2026-08-14T03:23:15.4239820+00:00",
+    "MinutesSinceBoot":  114.15,
+    "Disk":  {
+                 "Drive":  "C:",
+                 "FreeSpaceGB":  12.7,
+                 "TotalSpaceGB":  29.45,
+                 "PercentUsed":  56.86
+             },
+    "OutputDirectory":  "C:\\Users\\labuser\\Documents\\Training\\Project\\evidence-artifacts\\incident-B_20260814_051723",
+    "EvidenceFiles":  [
+                          "overview.json",
+                          "signin-events.csv",
+                          "signin-summary.csv",
+                          "user-profile-events.csv",
+                          "dm-events.csv",
+                          "group-policy-events.csv",
+                          "startup-items.csv",
+                          "action-checklist.csv"
+                      ],
+    "Counts":  {
+                   "SignInEvents":  0,
+                   "UserProfileEvents":  156,
+                   "DeviceManagementEvents":  0,
+                   "GroupPolicyEvents":  0,
+                   "StartupItems":  3
+               }
+}

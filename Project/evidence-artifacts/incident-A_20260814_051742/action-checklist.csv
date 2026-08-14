@@ -1,0 +1,5 @@
+﻿"Step","Owner","Action","Status"
+"1","Security Lead","Correlate request IDs with repository ACL outcomes for reported matter.","Pending"
+"2","Identity Engineer","Review group membership changes tied to affected user scope in last 72 hours.","Pending"
+"3","Platform Engineer","Compare connector entitlement decision and source ACL decision for mismatches.","Pending"
+"4","Incident Manager","Preserve this evidence pack and append cloud-side audit traces using matching timestamps.","Pending"

@@ -1,0 +1,11 @@
+﻿{
+    "Incident":  "C",
+    "Version":  "AI",
+    "DryRun":  true,
+    "StartTime":  "\/Date(1786598872408)\/",
+    "UserDesktop":  "C:\\Users\\labuser\\Desktop",
+    "PublicDesktop":  "C:\\Users\\Public\\Desktop",
+    "UserShortcutCount":  1,
+    "PublicShortcutCount":  3,
+    "OutputDirectory":  "C:\\Users\\labuser\\Documents\\Training\\Project\\evidence-artifacts\\incident-C_run_20260814_052752"
+}

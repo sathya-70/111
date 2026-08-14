@@ -1,0 +1,5 @@
+﻿"Step","Owner","Action","Status"
+"1","Endpoint Engineer","Compare missing expected shortcuts with app/package deployment ring.","Pending"
+"2","Packaging Engineer","Review installer/remediation logic for .lnk create/remove behavior.","Pending"
+"3","Profile SME","Investigate temporary profile indicators and profile service errors.","Pending"
+"4","Service Desk","Apply controlled shortcut baseline restore to affected cohort and record success rate.","Pending"

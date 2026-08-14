@@ -1,0 +1,4 @@
+﻿"Name","Command","User","Location"
+"aw-qt","C:\PROGRA~3\CHOCOL~1\lib\ACTIVI~1\tools\ACTIVI~1\aw-qt.exe ","Public","Common Startup"
+"SecurityHealth","%windir%\system32\SecurityHealthSystray.exe","Public","HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
+"AzureArcSetup","%windir%\AzureArcSetup\Systray\AzureArcSysTray.exe","Public","HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
